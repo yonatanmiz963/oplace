@@ -1,6 +1,6 @@
 // TODO: Add Price
 
-export interface Item {
+export interface place {
   id: string;
   txt: string;
 }

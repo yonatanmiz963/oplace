@@ -1,0 +1,9 @@
+<main class="place-app-container">
+    <div class="error-msg" *ngIf="error$ | async">{{error$ | async}} </div>
+    <p *ngIf="isLoading$ | async">⏱ Loading...</p>
+    <place-list (removed)="removeplace($event)" (edited)="editplace($event)" [places]="places$ | async"></place-list>
+    <button (click)="addingNew = !addingNew">Add place...</button>
+    <section *ngIf="addingNew || (place$ | async)">
+        <place-edit (saved)="addingNew=false"></place-edit>
+    </section>
+</main>

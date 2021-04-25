@@ -12,7 +12,7 @@ interface Entity {
     id?: string
 }
 
-async function query(entityType: string, delay = 1000): Promise<Entity[]> {
+async function query(entityType: string, delay = 0): Promise<Entity[]> {
     var entities = JSON.parse(localStorage.getItem(entityType) || 'null') || []
     if (delay) {
         return new Promise((resolve)=>setTimeout(resolve, delay, entities))
@@ -23,7 +23,7 @@ async function query(entityType: string, delay = 1000): Promise<Entity[]> {
 async function get(entityType: string, entityId: string): Promise<Entity> {
     const entities = await query(entityType)
     const entity = entities.find(entity => entity.id === entityId)
-    if (!entity) throw new Error(`Cannot get, Item ${entityId} of type: ${entityType} does not exist`)
+    if (!entity) throw new Error(`Cannot get, place ${entityId} of type: ${entityType} does not exist`)
     return entity;
 }
 
@@ -47,7 +47,7 @@ async function remove(entityType: string, entityId: string) : Promise<boolean> {
     const entities = await query(entityType)
     const idx = entities.findIndex(entity => entity.id === entityId)
     if (idx !== -1)  entities.splice(idx, 1)
-    else throw new Error(`Cannot remove, item ${entityId} of type: ${entityType} does not exist`)
+    else throw new Error(`Cannot remove, place ${entityId} of type: ${entityType} does not exist`)
     _save(entityType, entities)
     return true;
 }
