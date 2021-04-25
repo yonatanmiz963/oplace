@@ -1,8 +1,8 @@
-<section class="card-grid">
+<section class="card-grid flex column align-center">
     <place-preview *ngFor="let place of places" [place]="place">
-        <section>
+        <!-- <section>
             <button (click)="removeplace(place.id)">Remove</button>
             <button (click)="editplace(place.id)">Edit</button>
-        </section>
+        </section> -->
     </place-preview>
 </section>

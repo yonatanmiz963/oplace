@@ -1,16 +1,42 @@
 .place-preview {
-    text-align: center;
-    background-color: rgba(121, 128, 192, 0.788);
+    background-color: rgba(235, 235, 235, 0.788);
     border-radius: 10px;
     min-height: 90vh;
     padding: 20px;
-    margin: 0 auto;
-    cursor: pointer;
+    // margin: 0 auto;
+    // cursor: pointer;
     width: 800px;
+    box-shadow: 0 0 5px 1px rgb(201, 201, 201);
+    .place-title {
+        h2 {
+            margin-bottom: 0.6rem;
+        }
+        .content-option {
+            align-items: flex-end;
+            button {
+                margin-left: 10px;
+                width: 100px;
+                height: 50px;
+                border: none;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                background-color: rgb(221, 219, 219);
+                &.active {
+                    background-color: rgb(204, 204, 204);
+                }
+            }
+        }
+    }
+    img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+    .desc {
+        color: rgb(87, 87, 87);
+    }
+    .date {
+        font-size: 0.9rem;
+        color: rgb(143, 143, 143);
+    }
 }
-
-hr {
-    color: whitesmoke;
-    width: 80%;
-}
-
