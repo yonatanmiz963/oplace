@@ -41,10 +41,10 @@
         justify-content: center;
     }
     &.align-center {
-        align-places: center;
+        align-items: center;
     }
     &.align-start {
-        align-places: flex-start;
+        align-items: flex-start;
     }
     &.space-between {
         justify-content: space-between;
