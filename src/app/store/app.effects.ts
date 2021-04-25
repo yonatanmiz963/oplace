@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
-import { ItemService } from '../services/item.service';
-import { ItemAction, SAVE_ITEM, ADDED_ITEM, UPDATED_ITEM, LOAD_ITEMS, LOADED_ITEMS, REMOVE_ITEM, REMOVED_ITEM, LOAD_ITEM, LOADED_ITEM, SET_ERROR } from './actions/item.actions';
+import { placeService } from '../services/place.service';
+import { placeAction, SAVE_PLACE, ADDED_PLACE, UPDATED_PLACE, LOAD_PLACES, LOADED_PLACES, REMOVE_PLACE, REMOVED_PLACE, LOAD_PLACE, LOADED_PLACE, SET_ERROR } from './actions/place.actions';
 
-// Nice way to test error handling? localStorage.clear() after items are presented 
+// Nice way to test error handling? localStorage.clear() after places are presented 
 @Injectable()
 export class AppEffects {
 
-  loadItems$ = createEffect(() => {
+  loadPlaces$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(LOAD_ITEMS),
-      tap(() => console.log('Effects: load items ==> service')),
+      ofType(LOAD_PLACES),
+      tap(() => console.log('Effects: load places ==> service')),
       switchMap((action) =>
-        this.itemService.query(action.filterBy).pipe(
-          tap(() => console.log('Effects: Got items from service, send it to ===> Reducer')),
-          map((items) => ({
-            type: LOADED_ITEMS,
-            items,
+        this.placeService.query(action.filterBy).pipe(
+          tap(() => console.log('Effects: Got places from service, send it to ===> Reducer')),
+          map((places) => ({
+            type: LOADED_PLACES,
+            places,
           })),
           catchError((error) => {
             console.log('Effect: Caught error ===> Reducer', error)
@@ -31,16 +31,16 @@ export class AppEffects {
       )
     );
   });
-  loadItem$ = createEffect(() => {
+  loadPlace$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(LOAD_ITEM),
-      tap(() => console.log('Effects: load item ==> service')),
+      ofType(LOAD_PLACE),
+      tap(() => console.log('Effects: load place ==> service')),
       switchMap((action) =>
-        this.itemService.getById(action.itemId).pipe(
-          tap(() => console.log('Effects: Got item from service ===> Reducer')),
-          map((item) => ({
-            type: LOADED_ITEM,
-            item,
+        this.placeService.getById(action.placeId).pipe(
+          tap(() => console.log('Effects: Got place from service ===> Reducer')),
+          map((place) => ({
+            type: LOADED_PLACE,
+            place,
           })),
           catchError((error) => {
             console.log('Effect: Caught error ===> Reducer', error)
@@ -53,15 +53,15 @@ export class AppEffects {
       ),
     );
   });
-  removeItem$ = createEffect(() => {
+  removePlace$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(REMOVE_ITEM),
+      ofType(REMOVE_PLACE),
       switchMap((action) =>
-        this.itemService.remove(action.itemId).pipe(
-          tap(() => console.log('Effects: Item removed by service ===> Reducer')),
+        this.placeService.remove(action.placeId).pipe(
+          tap(() => console.log('Effects: place removed by service ===> Reducer')),
           map(() => ({
-            type: REMOVED_ITEM,
-            itemId: action.itemId,
+            type: REMOVED_PLACE,
+            placeId: action.placeId,
           })),
           catchError((error) => {
             console.log('Effect: Caught error ===> Reducer', error)
@@ -74,15 +74,15 @@ export class AppEffects {
       ),
     );
   })
-  saveItem$ = createEffect(() => {
+  savePlace$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(SAVE_ITEM),
+      ofType(SAVE_PLACE),
       switchMap((action) =>
-        this.itemService.save(action.item).pipe(
-          tap(() => console.log('Effects: Item saved by service, inform the ===> Reducer')),
-          map((savedItem) => ({
-            type: (action.item.id) ? UPDATED_ITEM : ADDED_ITEM,
-            item: savedItem,
+        this.placeService.save(action.place).pipe(
+          tap(() => console.log('Effects: place saved by service, inform the ===> Reducer')),
+          map((savedplace) => ({
+            type: (action.place.id) ? UPDATED_PLACE : ADDED_PLACE,
+            place: savedplace,
           })),
           catchError((error) => {
             console.log('Effect: Caught error ===> Reducer', error)
@@ -97,7 +97,7 @@ export class AppEffects {
     );
   })
   constructor(
-    private actions$: Actions<ItemAction>,
-    private itemService: ItemService
+    private actions$: Actions<placeAction>,
+    private placeService: placeService
   ) { }
 }

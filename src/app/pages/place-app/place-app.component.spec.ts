@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemPreviewComponent } from './item-preview.component';
+import { placeAppComponent } from './place-app.component';
 
-describe('ItemPreviewComponent', () => {
-  let component: ItemPreviewComponent;
-  let fixture: ComponentFixture<ItemPreviewComponent>;
+describe('placeAppComponent', () => {
+  let component: placeAppComponent;
+  let fixture: ComponentFixture<placeAppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemPreviewComponent ]
+      declarations: [ placeAppComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemPreviewComponent);
+    fixture = TestBed.createComponent(placeAppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
