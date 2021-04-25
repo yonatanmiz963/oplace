@@ -1,9 +1,0 @@
-<section class="place-edit">
-    <h2>place {{placeEditState}}</h2>
-    <form (submit)="$event.preventDefault();saveplace()">
-        <input type="text" name="txt" [(ngModel)]="place.txt" placeholder="place name" />
-        <button>{{placeEditState}}</button>
-    </form>
-    <hr/>
-    <pre>{{place | json}}</pre>
-</section>

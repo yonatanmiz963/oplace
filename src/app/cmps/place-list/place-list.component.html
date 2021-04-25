@@ -1,8 +1,9 @@
 <section class="card-grid">
     <place-preview *ngFor="let place of places" [place]="place">
         <section>
-            <button (click)="removeplace(place.id)">Remove</button>
-            <button (click)="editplace(place.id)">Edit</button>
+            <button (click)="removePlace(place._id)">Remove</button>
+            <!-- <button (click)="editplace(place.id)">Edit</button> -->
+            <a [routerLink]="['/edit',place._id]" >Edit</a>
         </section>
     </place-preview>
 </section>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import {EventEmitter} from '@angular/core';
-import { place } from 'src/app/models/place';
+import { EventEmitter } from '@angular/core';
+import { Place } from 'src/app/models/place';
 
 @Component({
   selector: 'place-list',
@@ -8,18 +8,18 @@ import { place } from 'src/app/models/place';
   styleUrls: ['./place-list.component.scss'],
 })
 export class placeListComponent implements OnInit {
-  @Input() places: place[] | null = [];
+  @Input() places: Place[] | null = [];
   @Output() removed = new EventEmitter<string>()
   @Output() edited = new EventEmitter<string>()
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
-  removeplace(placeId: string) {
+  ngOnInit(): void { }
+  removePlace(placeId: string | undefined) {
     console.log('placeList Emitting removed to Parent');
     this.removed.emit(placeId)
   }
-  editplace(placeId: string) {
-    console.log('placeList Emitting edited to Parent');
-    this.edited.emit(placeId)
-  }
+  // editplace(placeId: string) {
+  //   console.log('placeList Emitting edited to Parent');
+  //   this.edited.emit(placeId)
+  // }
 }

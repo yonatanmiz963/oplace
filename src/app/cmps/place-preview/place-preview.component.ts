@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { place } from 'src/app/models/place';
+import { Place } from 'src/app/models/place';
 import { placeListComponent } from '../place-list/place-list.component';
 
 @Component({
@@ -8,7 +8,7 @@ import { placeListComponent } from '../place-list/place-list.component';
   styleUrls: ['./place-preview.component.scss'],
 })
 export class placePreviewComponent implements OnInit {
-  @Input() place: place | null = null;
+  @Input() place: Place | null = null;
   constructor(private placeList: placeListComponent) {
     
   }

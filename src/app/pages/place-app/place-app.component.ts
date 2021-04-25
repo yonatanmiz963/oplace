@@ -5,16 +5,16 @@ import { pluck } from 'rxjs/operators';
 
 import { State } from '../../store/store';
 import {loadPlaces, loadPlace, removePlace} from '../../store/actions/place.actions';
-import { place } from '../../models/place';
+import { Place } from '../../models/place';
 
 @Component({
   selector: 'place-app',
   templateUrl: './place-app.component.html',
   styleUrls: ['./place-app.component.scss'],
 })
-export class placeAppComponent implements OnInit {
-  places$: Observable<place[]>;
-  place$: Observable<place | null>;
+export class PlaceAppComponent implements OnInit {
+  places$: Observable<Place[]>;
+  place$: Observable<Place | null>;
   isLoading$: Observable<boolean>;
   error$: Observable<string>;
   addingNew = false;
@@ -36,8 +36,8 @@ export class placeAppComponent implements OnInit {
     console.log('placeApp: dispatching remove');
     this.store.dispatch(new removePlace(placeId));
   }
-  editplace(placeId :string) {
-    console.log('placeApp: dispatching load place (for edit)');
-    this.store.dispatch(new loadPlace(placeId));
-  }  
+  // editplace(placeId :string) {
+  //   console.log('placeApp: dispatching load place (for edit)');
+  //   this.store.dispatch(new loadPlace(placeId));
+  // }  
 }

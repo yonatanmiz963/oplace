@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { place } from 'src/app/models/place';
+import { Place } from 'src/app/models/place';
 
 export const SET_LOADING = '[place]s loading';
 export const SET_ERROR = '[place]s error';
@@ -29,11 +29,11 @@ export class removePlace implements Action {
 }
 export class loadedPlaces implements Action {
   readonly type = LOADED_PLACES;
-  constructor(public places: place[] = []) {}
+  constructor(public places: Place[] = []) {}
 }
 export class loadedPlace implements Action {
   readonly type = LOADED_PLACE;
-  constructor(public place: place) {}
+  constructor(public place: Place) {}
 }
 export class removedPlace implements Action {
   readonly type = REMOVED_PLACE;
@@ -41,15 +41,15 @@ export class removedPlace implements Action {
 }
 export class savePlace implements Action {
   readonly type = SAVE_PLACE;
-  constructor(public place: place) {}
+  constructor(public place: Place) {}
 }
 export class addedPlace implements Action {
   readonly type = ADDED_PLACE;
-  constructor(public place: place) {}
+  constructor(public place: Place) {}
 }
 export class updatedPlace implements Action {
   readonly type = UPDATED_PLACE;
-  constructor(public place: place) {}
+  constructor(public place: Place) {}
 }
 export class loadingPlaces implements Action {
   readonly type = SET_LOADING;

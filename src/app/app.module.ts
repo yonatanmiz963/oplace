@@ -14,19 +14,19 @@ import { AppEffects } from './store/app.effects';
 
 import { AppComponent } from './root-component/index';
 import { HomeComponent } from './pages/home/home.component';
-import { placeAppComponent } from './pages/place-app/place-app.component';
+import { PlaceAppComponent } from './pages/place-app/place-app.component';
 
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { placeListComponent } from './cmps/place-list/place-list.component';
 import { placePreviewComponent } from './cmps/place-preview/place-preview.component';
-import { placeEditComponent } from './cmps/place-edit/place-edit.component';
+import { PlaceEditComponent } from './pages/place-edit/place-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    placeAppComponent,
-    placeEditComponent,
+    PlaceAppComponent,
+    PlaceEditComponent,
     AppHeaderComponent,
     placeListComponent,
     placePreviewComponent,

@@ -1,9 +1,9 @@
 import { SET_LOADING, LOADED_PLACES, REMOVED_PLACE, ADDED_PLACE, UPDATED_PLACE, LOADED_PLACE, SET_ERROR } from '../actions/place.actions';
-import { place } from 'src/app/models/place';
+import { Place } from 'src/app/models/place';
 
 export interface placeState {
-  places: place[];
-  place: place | null;
+  places: Place[];
+  place: Place | null;
   isLoading: boolean;
   error: string;
 }
@@ -36,7 +36,7 @@ export function reducer(state: placeState = initialState, action: any): placeSta
     } case REMOVED_PLACE: {
       const { placeId } = action;
       console.log('Reducer: Removing place:', placeId);
-      const places = state.places.filter(place => place.id !== placeId)
+      const places = state.places.filter(place => place._id !== placeId)
       return { ...state, places, error: '' };
     } case ADDED_PLACE: {
       const { place } = action;
@@ -46,7 +46,7 @@ export function reducer(state: placeState = initialState, action: any): placeSta
     } case UPDATED_PLACE: {
       const { place } = action;
       console.log('Reducer: Updating place:', place);
-      const places = state.places.map(currplace => (currplace.id === place.id) ? place : currplace)
+      const places = state.places.map(currplace => (currplace._id === place.id) ? place : currplace)
       return { ...state, places, place: null, error: '' };
     } default:
       return state;

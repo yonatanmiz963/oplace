@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
-import { place } from '../models/place';
+import { Place } from '../models/place';
 import { loadingPlaces } from '../store/actions/place.actions';
 import { placeState } from '../store/reducers/place.reducer';
 
@@ -35,26 +35,26 @@ export class placeService {
       localStorage.setItem(ENTITY, JSON.stringify(place_db))
     }
   }
-  query(filterBy = ''): Observable<place[]> {
+  query(filterBy = ''): Observable<Place[]> {
     this.store.dispatch(new loadingPlaces());
     console.log('placeService: Return places ===> effect');
-    return from(storageService.query(ENTITY) as Promise<place[]>)
+    return from(storageService.query(ENTITY) as Promise<Place[]>)
     // return new Observable((observer) => observer.next(places));
   }
-  getById(placeId: string): Observable<place> {
+  getById(placeId: string): Observable<Place> {
     console.log('placeService: Return place ===> effect');
-    return from(storageService.get(ENTITY, placeId) as Promise<place>)
+    return from(storageService.get(ENTITY, placeId) as Promise<Place>)
   }
   remove(placeId: string): Observable<boolean> {
     console.log('placeService: Removing places ===> effect');
     return from(storageService.remove(ENTITY, placeId))
   }
 
-  save(place: place): Observable<place> {
-    const method = (place.id) ? 'put' : 'post'
+  save(place: Place): Observable<Place> {
+    const method = (place._id) ? 'put' : 'post'
     const prmSavedplace = storageService[method](ENTITY, place)
     console.log('placeService: Saving place ===> effect');
-    return from(prmSavedplace) as Observable<place>
+    return from(prmSavedplace) as Observable<Place>
   }
 
   // private createPlaces(): place[] {

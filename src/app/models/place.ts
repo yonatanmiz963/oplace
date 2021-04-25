@@ -1,11 +1,11 @@
 // TODO: Add Price
 
-export interface place {
-  id: string;
+export interface Place {
+  _id?: string;
   title: string;
   description: string;
   imgUrl: string;
-  createdAt: Date | number;
+  createdAt: any;
   comments: Array<object>;
   location: Object;
 }

@@ -81,7 +81,7 @@ export class AppEffects {
         this.placeService.save(action.place).pipe(
           tap(() => console.log('Effects: place saved by service, inform the ===> Reducer')),
           map((savedplace) => ({
-            type: (action.place.id) ? UPDATED_PLACE : ADDED_PLACE,
+            type: (action.place._id) ? UPDATED_PLACE : ADDED_PLACE,
             place: savedplace,
           })),
           catchError((error) => {

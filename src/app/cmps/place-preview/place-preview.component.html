@@ -2,7 +2,7 @@
     <h2>{{place?.title}}</h2>
     <p>{{place?.description}}</p>
     <p>Added at: {{place?.createdAt | date}}</p>
-    <img [src]="place.imgUrl" alt="" />
+    <img [src]="place?.imgUrl" alt="" />
 
     <div class="text-center">
         <ng-content></ng-content>
