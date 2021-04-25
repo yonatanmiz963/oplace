@@ -20,6 +20,7 @@ import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { placeListComponent } from './cmps/place-list/place-list.component';
 import { placePreviewComponent } from './cmps/place-preview/place-preview.component';
 import { PlaceEditComponent } from './pages/place-edit/place-edit.component';
+import { MapComponent } from './cmps/map/map.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PlaceEditComponent } from './pages/place-edit/place-edit.component';
     AppHeaderComponent,
     placeListComponent,
     placePreviewComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

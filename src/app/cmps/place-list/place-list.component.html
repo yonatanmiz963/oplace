@@ -1,9 +1,16 @@
-<section class="card-grid">
+<section class="card-grid flex column align-center">
     <place-preview *ngFor="let place of places" [place]="place">
+<<<<<<< HEAD
         <section>
             <button (click)="removePlace(place._id)">Remove</button>
             <!-- <button (click)="editplace(place.id)">Edit</button> -->
             <a [routerLink]="['/edit',place._id]" >Edit</a>
         </section>
+=======
+        <!-- <section>
+            <button (click)="removeplace(place.id)">Remove</button>
+            <button (click)="editplace(place.id)">Edit</button>
+        </section> -->
+>>>>>>> 8d0fc0f4dd9b52ed307b5d046cbfea5a35c17ccd
     </place-preview>
 </section>

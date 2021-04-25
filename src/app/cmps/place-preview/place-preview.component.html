@@ -1,8 +1,16 @@
 <section class="place-preview">
-    <h2>{{place?.title}}</h2>
-    <p>{{place?.description}}</p>
-    <p>Added at: {{place?.createdAt | date}}</p>
-    <img [src]="place?.imgUrl" alt="" />
+    <div class="place-title flex space-between">
+        <h2>{{place?.title}}</h2>
+        
+        <div class="content-option">
+            <button [ngClass]="{active: isMap}" (click)="isMap=true">Map</button>
+            <button [ngClass]="{active: !isMap}" (click)="isMap=false">Image</button>
+        </div>
+    </div>
+    <map *ngIf="isMap"></map>
+    <img *ngIf="!isMap" [src]="place?.imgUrl" alt="" />
+    <p class="date">{{place?.createdAt | date}}</p>
+    <p class="desc">{{place?.description}}</p>
 
     <div class="text-center">
         <ng-content></ng-content>

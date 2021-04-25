@@ -9,6 +9,7 @@ import { placeListComponent } from '../place-list/place-list.component';
 })
 export class placePreviewComponent implements OnInit {
   @Input() place: Place | null = null;
+  isMap:boolean = false
   constructor(private placeList: placeListComponent) {
     
   }
