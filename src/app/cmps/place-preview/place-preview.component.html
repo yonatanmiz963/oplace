@@ -1,8 +1,9 @@
 <section class="place-preview">
-    <h2>{{place?.txt}}</h2>
-    <p>Id: {{place?.id}}</p>
-    <hr />
-    <!-- Cannot put class on ng-content ): -->
+    <h2>{{place?.title}}</h2>
+    <p>{{place?.description}}</p>
+    <p>Added at: {{place?.createdAt | date}}</p>
+    <img [src]="place.imgUrl" alt="" />
+
     <div class="text-center">
         <ng-content></ng-content>
     </div>
