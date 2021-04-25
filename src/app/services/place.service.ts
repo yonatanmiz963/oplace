@@ -7,6 +7,21 @@ import { placeState } from '../store/reducers/place.reducer';
 
 import { storageService } from './async-storage.service'
 
+
+
+
+const place_db = [{
+  "_id": "p101",
+  "title": "Tel Aviv",
+  "description": "tel aviv ya habibi",
+  "imgUrl": "https://i0.wp.com/www.touristisrael.com/wp-content/uploads/2021/01/Tel-Aviv-Travel.jpg?fit=2000%2C1381&ssl=1",
+  "createdAt": "1619367824710",
+  "comments": [],
+  "location": {
+    "lan": 424,
+    "lat": 424
+  }
+}]
 const ENTITY = 'place'
 @Injectable({
   providedIn: 'root',
@@ -17,7 +32,7 @@ export class placeService {
     const places = JSON.parse(localStorage.getItem(ENTITY) || 'null');
     if (!places || places.length === 0) {
       console.log('BUU');
-      localStorage.setItem(ENTITY, JSON.stringify(this.createPlaces()))
+      localStorage.setItem(ENTITY, JSON.stringify(place_db))
     }
   }
   query(filterBy = ''): Observable<place[]> {
@@ -42,14 +57,14 @@ export class placeService {
     return from(prmSavedplace) as Observable<place>
   }
 
-  private createPlaces(): place[] {
-    return ['Vue', 'Angular', 'React', 'Redux', 'NGRX', 'Vuex']
-      .map(txt => ({id: storageService.makeId(), txt}))
-  }
-  get emptyplace(): place {
-    return {
-      id: '',
-      txt: ''
-    }
-  }
+  // private createPlaces(): place[] {
+  //   return ['Vue', 'Angular', 'React', 'Redux', 'NGRX', 'Vuex']
+  //     .map(txt => ({id: storageService.makeId(), txt}))
+  // }
+  // get emptyplace(): place {
+  //   return {
+  //     id: '',
+  //     txt: ''
+  //   }
+  // }
 }

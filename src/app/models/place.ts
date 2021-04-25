@@ -2,5 +2,10 @@
 
 export interface place {
   id: string;
-  txt: string;
+  title: string;
+  description: string;
+  imgUrl: string;
+  createdAt: Date | number;
+  comments: Array<object>;
+  location: Object;
 }
