@@ -1,13 +1,11 @@
 import { Injectable, isDevMode } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Place } from '../models/place';
-import { placeState } from '../store/reducers/place.reducer';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class placeService {
-  constructor(private store: Store<placeState>,private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
   
   BASE_URL = !isDevMode() ? '/api/' : '//localhost:3030/api/'
 
