@@ -22,6 +22,8 @@ import { placePreviewComponent } from './cmps/place-preview/place-preview.compon
 import { PlaceEditComponent } from './pages/place-edit/place-edit.component';
 import { MapComponent } from './cmps/map/map.component';
 
+import { AgmCoreModule } from '@agm/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,10 @@ import { MapComponent } from './cmps/map/map.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBM1d2tne_BGGzZ3xtsAsCEcj5OCdg2JnE'
+    }),
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
@@ -50,7 +56,7 @@ import { MapComponent } from './cmps/map/map.component';
     }),
     EffectsModule.forRoot([AppEffects]),
   ],
-  providers: [],
+  providers: [HttpClient ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
