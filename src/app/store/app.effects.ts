@@ -12,7 +12,6 @@ export class AppEffects {
   loadPlaces$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(LOAD_PLACES),
-      tap(() => console.log('Effects: load places ==> service')),
       switchMap((action) =>
         this.placeService.query(action.filterBy).pipe(
           tap(() => console.log('Effects: Got places from service, send it to ===> Reducer')),
@@ -21,7 +20,6 @@ export class AppEffects {
             places,
           })),
           catchError((error) => {
-            console.log('Effect: Caught error ===> Reducer', error)
             return of({
               type: SET_ERROR,
               error: error.toString(),
@@ -34,10 +32,8 @@ export class AppEffects {
   loadPlace$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(LOAD_PLACE),
-      tap(() => console.log('Effects: load place ==> service')),
       switchMap((action) =>
         this.placeService.getById(action.placeId).pipe(
-          tap(() => console.log('Effects: Got place from service ===> Reducer')),
           map((place) => ({
             type: LOADED_PLACE,
             place,
@@ -58,7 +54,6 @@ export class AppEffects {
       ofType(REMOVE_PLACE),
       switchMap((action) =>
         this.placeService.remove(action.placeId).pipe(
-          tap(() => console.log('Effects: place removed by service ===> Reducer')),
           map(() => ({
             type: REMOVED_PLACE,
             placeId: action.placeId,
@@ -79,7 +74,6 @@ export class AppEffects {
       ofType(SAVE_PLACE),
       switchMap((action) =>
         this.placeService.save(action.place).pipe(
-          tap(() => console.log('Effects: place saved by service, inform the ===> Reducer')),
           map((savedplace) => ({
             type: (action.place._id) ? UPDATED_PLACE : ADDED_PLACE,
             place: savedplace,

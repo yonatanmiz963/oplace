@@ -29,11 +29,9 @@ export class PlaceAppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('placeApp: dispatching Loadplaces => effects');
     this.store.dispatch(new loadPlaces(this.filterBy));
   }
   removeplace(placeId :string) {
-    console.log('placeApp: dispatching remove');
     this.store.dispatch(new removePlace(placeId));
   }
   // editplace(placeId :string) {
