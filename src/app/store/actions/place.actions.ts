@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Place } from 'src/app/models/place';
+import { User } from 'src/app/models/user';
 
 export const SET_LOADING = '[place]s loading';
 export const SET_ERROR = '[place]s error';
@@ -13,7 +14,36 @@ export const SAVE_PLACE = '[place] saved';
 export const ADDED_PLACE = '[place] added';
 export const UPDATED_PLACE = '[place] updated';
 
+export const SIGN_USER = '[user] signup';
+export const LOG_USER = '[user] login';
+export const SET_USER = '[user] loggedIn';
+export const LOG_OUT = '[user] logout';
+export const UNSET_USER = '[user] loggedOut';
+
 export type placeAction = loadPlaces | loadPlace | removePlace | savePlace
+export type userAction = login | logout | signup
+
+
+export class loggedIn implements Action {
+  readonly type = SET_USER;
+  constructor(public user: User) { }
+}
+export class loggedOut implements Action {
+  readonly type = UNSET_USER;
+  constructor(public user: User) { }
+}
+export class login implements Action {
+  readonly type = LOG_USER;
+  constructor(public user: User) { }
+}
+export class signup implements Action {
+  readonly type = SIGN_USER;
+  constructor(public user: User) { }
+}
+export class logout implements Action {
+  readonly type = LOG_OUT;
+  constructor(public empty: null) { }
+}
 
 export class loadPlaces implements Action {
   readonly type = LOAD_PLACES;

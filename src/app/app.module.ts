@@ -22,7 +22,7 @@ import { placePreviewComponent } from './cmps/place-preview/place-preview.compon
 import { PlaceEditComponent } from './pages/place-edit/place-edit.component';
 import { MapComponent } from './cmps/map/map.component';
 
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
@@ -40,9 +40,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBM1d2tne_BGGzZ3xtsAsCEcj5OCdg2JnE'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBM1d2tne_BGGzZ3xtsAsCEcj5OCdg2JnE'
+    // }),
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {

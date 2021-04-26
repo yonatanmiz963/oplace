@@ -1,18 +1,22 @@
-import { SET_LOADING, LOADED_PLACES, REMOVED_PLACE, ADDED_PLACE, UPDATED_PLACE, LOADED_PLACE, SET_ERROR } from '../actions/place.actions';
+import { SET_LOADING, LOADED_PLACES, REMOVED_PLACE, ADDED_PLACE, UPDATED_PLACE, LOADED_PLACE, SET_ERROR, UNSET_USER, SET_USER } from '../actions/place.actions';
 import { Place } from 'src/app/models/place';
+import { User } from 'src/app/models/user';
 
 export interface placeState {
   places: Place[];
   place: Place | null;
   isLoading: boolean;
   error: string;
+  user: User | null;
+
 }
 
 const initialState: placeState = {
   places: [],
   place: null,
   isLoading: false,
-  error: ''
+  error: '',
+  user: null
 };
 
 export function reducer(state: placeState = initialState, action: any): placeState {
@@ -48,6 +52,14 @@ export function reducer(state: placeState = initialState, action: any): placeSta
       console.log('Reducer: Updating place:', place);
       const places = state.places.map(currplace => (currplace._id === place.id) ? place : currplace)
       return { ...state, places, place: null, error: '' };
+    } case SET_USER: {
+      const { user } = action;
+      console.log(`Reducer: Setting loaded user ${user._id}`);
+      return { ...state, user };
+    } case UNSET_USER: {
+      console.log('Reducer: Unsetting user');
+      const user = null
+      return { ...state, user };
     } default:
       return state;
   }

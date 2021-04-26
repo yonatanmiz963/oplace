@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 
 import { State } from '../../store/store';
-import {loadPlaces, loadPlace, removePlace} from '../../store/actions/place.actions';
+import { loadPlaces, loadPlace, removePlace } from '../../store/actions/place.actions';
 import { Place } from '../../models/place';
 
 @Component({
@@ -32,12 +32,9 @@ export class PlaceAppComponent implements OnInit {
     console.log('placeApp: dispatching Loadplaces => effects');
     this.store.dispatch(new loadPlaces(this.filterBy));
   }
-  removeplace(placeId :string) {
+  removeplace(placeId: string) {
     console.log('placeApp: dispatching remove');
     this.store.dispatch(new removePlace(placeId));
   }
-  // editplace(placeId :string) {
-  //   console.log('placeApp: dispatching load place (for edit)');
-  //   this.store.dispatch(new loadPlace(placeId));
-  // }  
+
 }

@@ -3,7 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { placeService } from '../services/place.service';
-import { placeAction, SAVE_PLACE, ADDED_PLACE, UPDATED_PLACE, LOAD_PLACES, LOADED_PLACES, REMOVE_PLACE, REMOVED_PLACE, LOAD_PLACE, LOADED_PLACE, SET_ERROR } from './actions/place.actions';
+import { UserService } from '../services/user-service.service';
+import { placeAction, SAVE_PLACE, ADDED_PLACE, UPDATED_PLACE, LOAD_PLACES, LOADED_PLACES, REMOVE_PLACE, REMOVED_PLACE, LOAD_PLACE, LOADED_PLACE, SET_ERROR, userAction, SET_USER, SIGN_USER, UNSET_USER, LOG_OUT, LOG_USER } from './actions/place.actions';
 
 // Nice way to test error handling? localStorage.clear() after places are presented 
 @Injectable()
@@ -96,8 +97,72 @@ export class AppEffects {
       )
     );
   })
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LOG_USER),
+      switchMap((action) =>
+        this.userService.login(action.user).pipe(
+          tap(() => console.log('Effects: User was loggedIn by the service, inform the ===> Reducer')),
+          map((loggedUser) => ({
+            type: SET_USER,
+            user: loggedUser,
+          })),
+          catchError((error) => {
+            console.log('Effect: Caught error ===> Reducer', error)
+            return of({
+              type: SET_ERROR,
+              error: error.toString(),
+            })
+          })
+        )
+      )
+    );
+  })
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(LOG_OUT),
+      switchMap((action) =>
+        this.userService.logout(action.empty).pipe(
+          tap(() => console.log('Effects: logged user out by the service, inform the ===> Reducer')),
+          map((loggedOut) => ({
+            type: UNSET_USER,
+            user: loggedOut,
+          })),
+          catchError((error) => {
+            console.log('Effect: Caught error ===> Reducer', error)
+            return of({
+              type: SET_ERROR,
+              error: error.toString(),
+            })
+          })
+        )
+      )
+    );
+  })
+  signup$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(SIGN_USER),
+      switchMap((action) =>
+        this.userService.signup(action.user).pipe(
+          tap(() => console.log('Effects: signedup user by the service, inform the ===> Reducer')),
+          map((signedupUser) => ({
+            type: SET_USER,
+            user: signedupUser,
+          })),
+          catchError((error) => {
+            console.log('Effect: Caught error ===> Reducer', error)
+            return of({
+              type: SET_ERROR,
+              error: error.toString(),
+            })
+          })
+        )
+      )
+    );
+  })
   constructor(
-    private actions$: Actions<placeAction>,
-    private placeService: placeService
+    private actions$: Actions<placeAction | userAction>,
+    private placeService: placeService,
+    private userService: UserService
   ) { }
 }
