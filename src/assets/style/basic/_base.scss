@@ -17,9 +17,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  margin: 0 0 0.6em;
-  line-height: 1;
+h6,
+p {
+  margin: 0;
+  // line-height: 1;
 }
 
 h1 {
@@ -30,10 +31,10 @@ img {
   width: 100%;
 }
 
-p {
-  margin: 0 0 1em;
-  max-width: 40ch;
-}
+// p {
+//   margin: 0 0 1em;
+//   max-width: 40ch;
+// }
 
 pre {
   background-color: lightgray;
