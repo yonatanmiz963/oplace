@@ -47,24 +47,32 @@ export class placeService {
     // console.log('placeService: Return places ===> effect');
     // return from(storageService.query(ENTITY) as Promise<Place[]>)
     // return new Observable((observer) => observer.next(places));
-    console.log('this.BASE_URL:', this.BASE_URL)
-    return this.http.get<{ answer: Object }>(this.BASE_URL+"place")
+    // console.log('this.BASE_URL:', this.BASE_URL)
+    return this.http.get<{ answer: Object }>(`${this.BASE_URL}place`)
+    
+  }
+  getById(placeId: string) {
+    // console.log('placeService: Return place ===> effect');
+    // return from(storageService.get(ENTITY, placeId) as Promise<Place>)
+    return this.http.get<{ answer: Object }>(`${this.BASE_URL}place/${placeId}`)
+  }
+  remove(placeId: string) {
+    // console.log('placeService: Removing places ===> effect');
+    // return from(storageService.remove(ENTITY, placeId))
+    return this.http.delete<{ answer: Object }>(`${this.BASE_URL}place/${placeId}`)
+  }
+  
+  save(place: Place) {
+    return (place._id) 
+    ? 
+    this.http.put<{ answer: Object }>(`${this.BASE_URL}place/${place._id}`, {...place})
+    : 
+    this.http.post<{ answer: Object }>(`${this.BASE_URL}place`, {...place})
 
-  }
-  getById(placeId: string): Observable<Place> {
-    console.log('placeService: Return place ===> effect');
-    return from(storageService.get(ENTITY, placeId) as Promise<Place>)
-  }
-  remove(placeId: string): Observable<boolean> {
-    console.log('placeService: Removing places ===> effect');
-    return from(storageService.remove(ENTITY, placeId))
-  }
-
-  save(place: Place): Observable<Place> {
-    const method = (place._id) ? 'put' : 'post'
-    const prmSavedplace = storageService[method](ENTITY, place)
-    console.log('placeService: Saving place ===> effect');
-    return from(prmSavedplace) as Observable<Place>
+    // const prmSavedplace = storageService[method](ENTITY, place)
+    // return this.http[method]<{ answer: Object }>(`${this.BASE_URL}place/${place}`, place)
+    // console.log('placeService: Saving place ===> effect');
+    // return from(prmSavedplace) as Observable<Place>
   }
 
   // private createPlaces(): place[] {
