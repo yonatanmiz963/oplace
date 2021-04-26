@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
 import { Place } from '../models/place';
 import { loadingPlaces } from '../store/actions/place.actions';
 import { placeState } from '../store/reducers/place.reducer';
+import { HttpClient } from '@angular/common/http';
 
 import { storageService } from './async-storage.service'
-
-
 
 
 const place_db = [{
@@ -22,12 +21,12 @@ const place_db = [{
     "lat": 424
   }
 }]
-const ENTITY = 'place'
+    const ENTITY = 'place'
 @Injectable({
   providedIn: 'root',
 })
 export class placeService {
-  constructor(private store: Store<placeState>) {
+  constructor(private store: Store<placeState>,private http: HttpClient) {
     // If empty - load test data to storage
     const places = JSON.parse(localStorage.getItem(ENTITY) || 'null');
     if (!places || places.length === 0) {
@@ -35,11 +34,22 @@ export class placeService {
       localStorage.setItem(ENTITY, JSON.stringify(place_db))
     }
   }
-  query(filterBy = ''): Observable<Place[]> {
-    this.store.dispatch(new loadingPlaces());
-    console.log('placeService: Return places ===> effect');
-    return from(storageService.query(ENTITY) as Promise<Place[]>)
+
+  
+  BASE_URL = !isDevMode()
+  ? '/api/'
+  : '//localhost:3030/api/'
+
+
+
+  query(filterBy = '') {
+    // this.store.dispatch(new loadingPlaces());
+    // console.log('placeService: Return places ===> effect');
+    // return from(storageService.query(ENTITY) as Promise<Place[]>)
     // return new Observable((observer) => observer.next(places));
+    console.log('this.BASE_URL:', this.BASE_URL)
+    return this.http.get<{ answer: Object }>(this.BASE_URL+"place")
+
   }
   getById(placeId: string): Observable<Place> {
     console.log('placeService: Return place ===> effect');
