@@ -1,9 +1,12 @@
-<nav class="nav-container flex space-between align-center">
-    <div class="flex align-center">
-        <a routerLinkActive="active-nav" routerLink="/home" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a routerLinkActive="active-nav" routerLink="/place" [routerLinkActiveOptions]="{exact: true}">Places</a>
-    </div>
-    <a routerLink="/home">
-        <!-- <img src="./assets/img/logo.png" alt="app-logo" title="Go home" /> -->
-    </a>
-</nav>
+<header class="nav-container ">
+    <nav class="flex space-between align-center">
+        <a routerLink="/home" class="flex center">
+            <img src="../../../assets/img/logo.jpg" alt="">
+            <!-- <img src="./assets/img/logo.png" alt="app-logo" title="Go home" /> -->
+        </a>
+        <div class="flex align-center">
+            <a routerLinkActive="active-nav" routerLink="/place" [routerLinkActiveOptions]="{exact: true}">Places</a>
+            <a routerLinkActive="active-nav" routerLink="/home" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </div>
+    </nav>
+</header>

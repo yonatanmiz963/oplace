@@ -55,7 +55,6 @@ export class PlaceEditComponent implements OnInit {
   onSavePlace() {
     if (!this.place.createdAt) this.place.createdAt = Date.now()
     this.store.dispatch(new savePlace(this.place));
-    console.log('Saving: ', this.place);
     // TODO: Figure a way to know that saving was done before closing here
     // this.saved.emit();
   }

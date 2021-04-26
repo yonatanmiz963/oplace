@@ -29,11 +29,14 @@ export class PlaceAppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('placeApp: dispatching Loadplaces => effects');
     this.store.dispatch(new loadPlaces(this.filterBy));
   }
+<<<<<<< HEAD
   removeplace(placeId: string) {
     console.log('placeApp: dispatching remove');
+=======
+  removeplace(placeId :string) {
+>>>>>>> 56b4d4af2af418ea1f113886430ba6b89a256291
     this.store.dispatch(new removePlace(placeId));
   }
 
