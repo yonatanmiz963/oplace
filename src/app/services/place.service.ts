@@ -34,55 +34,24 @@ export class placeService {
       localStorage.setItem(ENTITY, JSON.stringify(place_db))
     }
   }
-
   
-  BASE_URL = !isDevMode()
-  ? '/api/'
-  : '//localhost:3030/api/'
-
-
+  BASE_URL = !isDevMode() ? '/api/' : '//localhost:3030/api/'
 
   query(filterBy = '') {
-    // this.store.dispatch(new loadingPlaces());
-    // console.log('placeService: Return places ===> effect');
-    // return from(storageService.query(ENTITY) as Promise<Place[]>)
-    // return new Observable((observer) => observer.next(places));
-    // console.log('this.BASE_URL:', this.BASE_URL)
     return this.http.get<{ answer: Object }>(`${this.BASE_URL}place`)
     
   }
   getById(placeId: string) {
-    // console.log('placeService: Return place ===> effect');
-    // return from(storageService.get(ENTITY, placeId) as Promise<Place>)
     return this.http.get<{ answer: Object }>(`${this.BASE_URL}place/${placeId}`)
   }
   remove(placeId: string) {
-    // console.log('placeService: Removing places ===> effect');
-    // return from(storageService.remove(ENTITY, placeId))
     return this.http.delete<{ answer: Object }>(`${this.BASE_URL}place/${placeId}`)
   }
   
   save(place: Place) {
-    return (place._id) 
-    ? 
+    return (place._id) ? 
     this.http.put<{ answer: Object }>(`${this.BASE_URL}place/${place._id}`, {...place})
     : 
     this.http.post<{ answer: Object }>(`${this.BASE_URL}place`, {...place})
-
-    // const prmSavedplace = storageService[method](ENTITY, place)
-    // return this.http[method]<{ answer: Object }>(`${this.BASE_URL}place/${place}`, place)
-    // console.log('placeService: Saving place ===> effect');
-    // return from(prmSavedplace) as Observable<Place>
   }
-
-  // private createPlaces(): place[] {
-  //   return ['Vue', 'Angular', 'React', 'Redux', 'NGRX', 'Vuex']
-  //     .map(txt => ({id: storageService.makeId(), txt}))
-  // }
-  // get emptyplace(): place {
-  //   return {
-  //     id: '',
-  //     txt: ''
-  //   }
-  // }
 }
