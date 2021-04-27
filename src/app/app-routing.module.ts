@@ -6,7 +6,7 @@ import { PlaceEditComponent } from './pages/place-edit/place-edit.component';
 import { PlaceResolverService } from './services/place-resolver.service';
 
 const routes: Routes = [
-  { path: 'edit/:id', component: PlaceEditComponent, resolve: { Place: PlaceResolverService } },
+  { path: 'edit/:id', component: PlaceEditComponent, resolve: { place: PlaceResolverService } },
   { path: 'edit', component: PlaceEditComponent },
   { path: 'home', component: HomeComponent },
   { path: 'place', component: PlaceAppComponent },

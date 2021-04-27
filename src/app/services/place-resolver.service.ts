@@ -8,13 +8,15 @@ import { placeService } from './place.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PlaceResolverService implements Resolve<Observable<object>> {
+export class PlaceResolverService implements Resolve<Observable<any>> {
 
   constructor(private placeService: placeService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
     const { id } = route.params
+    // console.log('id:', id)
     // this.msgService.setLoading(true)
+    // console.log(' this.placeService.getById(id):',  this.placeService.getById(id))
     return this.placeService.getById(id)
     // .pipe(
     // catchError(err => this.msgService.sendAlert(err))
