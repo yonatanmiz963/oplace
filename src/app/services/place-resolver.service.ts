@@ -8,7 +8,7 @@ import { placeService } from './place.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PlaceResolverService implements Resolve<Observable<Place>> {
+export class PlaceResolverService implements Resolve<Observable<object>> {
 
   constructor(private placeService: placeService) { }
 

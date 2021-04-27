@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { State, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { State } from '../../store/store';
+
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
-import { placeState } from 'src/app/store/reducers/place.reducer';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ import { placeState } from 'src/app/store/reducers/place.reducer';
 export class AppHeaderComponent implements OnInit {
   user$: Observable<User | null>;
 
-  constructor(private store: Store<State<placeState>>) {
+  constructor(private store: Store<State>) {
     this.user$ = this.store.select('placeState').pipe(pluck('user'));
 
    }
